@@ -424,3 +424,8 @@ def grouper(iterable, n):
         if not chunk:
             return
         yield chunk
+
+
+def allow_openssl_102():
+    log.debug("Setting environment variable CRYPTOGRAPHY_ALLOW_OPENSSL_102")
+    os.environ["CRYPTOGRAPHY_ALLOW_OPENSSL_102"] = "true"

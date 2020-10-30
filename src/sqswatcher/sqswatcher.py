@@ -28,6 +28,7 @@ from common.utils import (
     EventType,
     Host,
     UpdateEvent,
+    allow_openssl_102,
     get_asg_name,
     get_compute_instance_type,
     get_instance_properties,
@@ -416,6 +417,9 @@ def _poll_queue(sqs_config, queue, table, asg_name):
 def main():
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s [%(module)s:%(funcName)s] %(message)s")
     log.info("sqswatcher startup")
+
+    if ".amzn2." in platform.platform():
+        allow_openssl_102()
 
     try:
         config = _get_config()
